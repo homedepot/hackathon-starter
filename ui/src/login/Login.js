@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import './Login.css'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import Recaptcha from 'react-recaptcha'
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      recaptchaVerified: false
     }
   }
 
@@ -70,6 +72,10 @@ class Login extends Component {
             type="password"
             data-register-password
             onChange={event => this.handleFormFieldChange('password', event)}
+          />
+          <Recaptcha
+              sitekey={process.env.REACT_APP_RECAPTCHA || 'no-key' }
+              verifyCallback={() => this.setState({recaptchaVerified: true})}
           />
           <input type="submit" value="Submit!" />
         </form>
