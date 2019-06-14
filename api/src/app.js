@@ -63,7 +63,6 @@ app.use((req, res, next) => {
 
 io.on('connection', function(socket) {
   socket.on('wish', function(msg) {
-    console.log('SOME WISH')
     socket.broadcast.emit('wish', msg)
   })
 })
