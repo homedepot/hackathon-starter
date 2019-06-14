@@ -13,6 +13,8 @@ const auth = require('./routes/auth')
 const cors = require('cors')
 
 const app = express()
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
 
 app.use(compression())
 
@@ -59,12 +61,19 @@ app.use((req, res, next) => {
   next(err)
 })
 
+io.on('connection', function(socket) {
+  socket.on('wish', function(msg) {
+    console.log('SOME WISH')
+    socket.broadcast.emit('wish', msg)
+  })
+})
+
 // error handler
 app.use(errorHandler())
 
 if (process.env.NODE_ENV !== 'test') {
   app.set('port', process.env.PORT || 3002)
-  const server = app.listen(app.get('port'), function() {
+  const server = http.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + server.address().port)
   })
 }
