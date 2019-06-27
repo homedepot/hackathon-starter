@@ -30,7 +30,8 @@ docker-compose down && docker-compose build && docker-compose up
 
 *NOTE*: The first build will be slow due to docker world-building
 
-This will host your front end on `localhost:3001`, your api endpoint on `localhost:3002`, and mongodb will be networked internally (more details TBD)
+This will host your front end on `localhost:3001`, your api endpoint on `localhost:3002`, and mongodb will be networked internally (more details TBD). You can connect a 
+remote debugger to `0.0.0.0:56745` in order to debug the api. 
 
 The frontend and backend will auto-refresh as you make changes, and the only time you will ever need to re-run `docker-compose down && docker-compose build && docker-compose up` 
 is if you made changes to the package.json file in either ui or api.
