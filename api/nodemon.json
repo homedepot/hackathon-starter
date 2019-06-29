@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "js",
+  "ignore": ["src/**/*.test.js"],
+  "exec": "node --inspect=0.0.0.0:56745 ./src/app.js"
+}
